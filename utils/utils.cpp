@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 
-std::vector<std::string> load_file(std::filesystem::path path) {
+std::vector<std::string> loadFile(std::filesystem::path path) {
     std::vector<std::string> file_lines;
     
     if (auto file = std::ifstream(path)) {

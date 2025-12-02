@@ -70,15 +70,14 @@ int getCodeMethod0x434C49434B(const std::vector<std::string>& taskInput) {
 }
 
 void executeFile(std::filesystem::path path, int (*fun)(const std::vector<std::string>&)) {
-    std::vector<std::string> lines = load_file(path);
+    std::vector<std::string> lines = loadFile(path);
     int result = fun(lines);
     std::print("The code is: {0}\n", result);
 }
 
 int main() {
-    // executeFile("small_input.txt", getCode);
-    // executeFile("large_input.txt", getCode);
-
+    executeFile("small_input.txt", getCode);
+    executeFile("large_input.txt", getCode);
     executeFile("small_input.txt", getCodeMethod0x434C49434B);
     executeFile("large_input.txt", getCodeMethod0x434C49434B);
 }
