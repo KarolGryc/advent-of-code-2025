@@ -27,11 +27,11 @@ std::vector<std::vector<int>> parseLines(const std::vector<std::string>& lines) 
     return parsedLines;
 }
 
-uint64_t evalForTwoBatteries(const std::vector<int>& bank) {
-    uint64_t max{};
+int evalForTwoBatteries(const std::vector<int>& bank) {
+    int max{};
     for (int i = 0; i < bank.size(); i++) {
         for (int j = i + 1; j < bank.size(); j++) {
-            uint64_t val = bank[i] * 10 + bank[j];
+            int val = bank[i] * 10 + bank[j];
             max = std::max(val, max);
         }
     }
@@ -39,8 +39,8 @@ uint64_t evalForTwoBatteries(const std::vector<int>& bank) {
     return max;
 }
 
-uint64_t evallAllLinesForTwoBatteries(const std::vector<std::vector<int>>& banks) {
-    uint64_t sum{};
+int evallAllLinesForTwoBatteries(const std::vector<std::vector<int>>& banks) {
+    int sum{};
     for (const auto& bank : banks) {
         sum += evalForTwoBatteries(bank);
     }
@@ -48,7 +48,7 @@ uint64_t evallAllLinesForTwoBatteries(const std::vector<std::vector<int>>& banks
     return sum;
 }
 
-uint64_t evalForNBatteries(const std::vector<int>& bank, int n) {
+int evalForNBatteries(const std::vector<int>& bank, int n) {
     if (n <= 0 || n > bank.size()) {
         throw std::string("Input error");
     }
@@ -68,7 +68,7 @@ uint64_t evalForNBatteries(const std::vector<int>& bank, int n) {
         }
     }
 
-    uint64_t num{};
+    int num{};
     for (auto el : solution) {
         num *= 10;
         num += el;
@@ -77,8 +77,8 @@ uint64_t evalForNBatteries(const std::vector<int>& bank, int n) {
     return num;
 }
 
-uint64_t evalAllForNBatteries(const std::vector<std::vector<int>>& banks, int n) {
-    uint64_t sum{};
+int evalAllForNBatteries(const std::vector<std::vector<int>>& banks, int n) {
+    int sum{};
     for (const auto& bank: banks) {
         sum += evalForNBatteries(bank, n);
     }

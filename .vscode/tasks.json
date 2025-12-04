@@ -6,12 +6,13 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-fdiagnostics-color=always",
+                "-O2",
                 "-g",
                 "${file}",
                 "${workspaceFolder}/utils/utils.cpp",
                 "-std=gnu++23",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/bin/${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${fileDirname}"
