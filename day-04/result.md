@@ -23,9 +23,6 @@
 
 ### Grid<uint8_t> Using parallel computing, 8 threads
 ```
-Result of part 1: 1626
-Result of part 2: 9173
-
 real    0m10.567s
 user    0m57.249s
 sys     0m0.180s
