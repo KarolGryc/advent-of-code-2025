@@ -16,13 +16,13 @@ struct Grid {
     std::vector<std::vector<T>> content;
 };
 
-Grid<bool> parseToPaperRollsGrid(const std::vector<std::string>& lines) {
+Grid<uint8_t> parseToPaperRollsGrid(const std::vector<std::string>& lines) {
     // Assumption that all rows have the same size
     const char paperRollSign = '@';
     int ySize = lines.size();
     int xSize = lines[0].size();
 
-    Grid<bool> grid(xSize, ySize);
+    Grid<uint8_t> grid(xSize, ySize);
 
     for (int y = 0; y < ySize; y++) {
         auto& line = lines[y];
@@ -35,7 +35,7 @@ Grid<bool> parseToPaperRollsGrid(const std::vector<std::string>& lines) {
     return grid;
 }
 
-bool valAt(const Grid<bool> grid, int x, int y) {
+bool valAt(const Grid<uint8_t> grid, int x, int y) {
     if (grid.inBounds(x, y)) {
         return grid.content[y][x];
     }
@@ -43,7 +43,7 @@ bool valAt(const Grid<bool> grid, int x, int y) {
     return false;
 }
 
-int countNeighbours(const Grid<bool>& grid, int x, int y) {
+int countNeighbours(const Grid<uint8_t>& grid, int x, int y) {
     int count = 0;
     for (int dy = -1; dy <= 1; dy++) {
         for (int dx = -1; dx <= 1; dx++) {
@@ -60,7 +60,7 @@ int countNeighbours(const Grid<bool>& grid, int x, int y) {
     return count;
 }
 
-int countAccessibleRolls(const Grid<bool>& grid) {
+int countAccessibleRolls(const Grid<uint8_t>& grid) {
     int xSize = grid.xSize();
     int ySize = grid.ySize();
     int cnt = 0;
@@ -79,8 +79,8 @@ int countAccessibleRolls(const Grid<bool>& grid) {
     return cnt;
 }
 
-std::pair<int, Grid<bool>> countRemoveAccessible(const Grid<bool>& grid) {
-    Grid<bool> buffer = grid;
+std::pair<int, Grid<uint8_t>> countRemoveAccessible(const Grid<uint8_t>& grid) {
+    Grid<uint8_t> buffer = grid;
     int xSize = grid.xSize();
     int ySize = grid.ySize();
     int cnt = 0;
@@ -102,8 +102,8 @@ std::pair<int, Grid<bool>> countRemoveAccessible(const Grid<bool>& grid) {
     return {cnt, buffer};
 }
 
-std::pair<int, Grid<bool>> countRemoveAccessibleParallel(const Grid<bool>& grid){
-    Grid<bool> buffer = grid;
+std::pair<int, Grid<uint8_t>> countRemoveAccessibleParallel(const Grid<uint8_t>& grid){
+    Grid<uint8_t> buffer = grid;
     int xSize = grid.xSize();
     int ySize = grid.ySize();
 
@@ -152,7 +152,7 @@ std::pair<int, Grid<bool>> countRemoveAccessibleParallel(const Grid<bool>& grid)
 }
 
 
-int countWithReduce(Grid<bool> grid) {
+int countWithReduce(Grid<uint8_t> grid) {
     int totalCnt = 0;
     while (true) {
         auto [cnt, buffer] = countRemoveAccessible(grid);
@@ -165,7 +165,7 @@ int countWithReduce(Grid<bool> grid) {
     }
 }
 
-int countWithReduceParallel(Grid<bool> grid) {
+int countWithReduceParallel(Grid<uint8_t> grid) {
     int totalCnt = 0;
     while (true) {
         auto [cnt, buffer] = countRemoveAccessibleParallel(grid);
